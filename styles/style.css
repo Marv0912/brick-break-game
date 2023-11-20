@@ -1,3 +1,15 @@
+.game-intro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 620px;
+    height: 600px;
+    background-image: url('../assets/background-intro.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 #try-again-button {
     display: none;
 }

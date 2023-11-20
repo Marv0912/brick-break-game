@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css" >
+    <link rel="stylesheet" href="styles/style.css">
     <title>Brick Break</title>
 </head>
+
 <body>
     <main>
+        <div class="game-intro" >
+            <div></div>
+            <button id="start-button">Start</button>
+        </div>
+        <div>
+            <div>
+                <div>Lives: <span id="lives"> </span></div>
+                <div>Score: <span id="score"> </span></div>
+    
+            </div>
+            <div id="game-screen"></div>
+        </div>
 
-        <button id="start-button" >Start</button>
-        <button id="try-again-button" >Try Again</button>
+        <button id="try-again-button">Try Again</button>
     </main>
 
     <script type="text/javascript" src="js/brick.js"></script>
@@ -18,4 +31,5 @@
     <script type="text/javascript" src="js/ball.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
 </body>
+
 </html>
