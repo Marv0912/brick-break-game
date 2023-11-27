@@ -1,18 +1,37 @@
 class Paddle {
-    constructor() {
-        this.width = 50;
-        this.height = 20;
-        this.direction = 250;
-        this.speed = 0;
+    constructor(gameScreen, left, top, width, height, element) {
+        this.gameScreen = gameScreen;
+        this.left = left;
+        this.top = top;
+        this.width = width;
+        this.height = height;
+        this.speed = 5;
         this.maxSpeed = 10;
+        this.element = document.createElement('img');
+        this.element.src = `${element}`;
+        this.element.style.position = 'absolute';
+        this.element.style.width = `${this.width}px`;
+        this.element.style.height = `${this.height}px`;
+        this.gameScreen.appendChild(this.element);
+
+        this.updatePosition();
     }
-    move() {
-        if (this.direction <= 0) {
-            this.direction *= -1;
+
+    move(direction) {
+        if (direction === 'left') this.left -= this.speed;
+        if (direction === 'right') this.left += this.speed;
+
+        // Keep the paddle within the game screen boundaries
+        if (this.left < 0) this.left = 0;
+        if (this.left + this.width > this.gameScreen.offsetWidth) {
+            this.left = this.gameScreen.offsetWidth - this.width;
         }
-        else if (this.direction >= 500) {
-            this.direction *= -1
-        }
+
+        this.updatePosition();
+    }
+
+    updatePosition() {
+        this.element.style.left = `${this.left}px`;
+        this.element.style.top = `${this.top}px`;
     }
 }
-
