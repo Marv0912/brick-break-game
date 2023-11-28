@@ -1,10 +1,65 @@
-class Ball{
-    constructor(x, y, radius) {
-    this.x = x;
-    this.y = y;
-    this.radius = radius;
-    this.speed = 0;
-    this.directionX = 0; 
-    this.directionY = 0;  
+class Ball {
+    constructor(gameScreen, x, y, radius, element) {
+        this.gameScreen = gameScreen
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.speedX = 2;
+        this.speedY = -2;
+        this.element = document.createElement('img');
+        this.element.src = `${element}`;
+        this.element.style.position = 'absolute';
+        this.element.style.width = `${this.radius * 2}px`;
+        this.element.style.height = `${this.radius * 2}px`;
+        this.gameScreen.appendChild(this.element);
+        this.updatePosition();
     }
+    move() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // Collision detection with the walls
+        if (this.x <= 0 || this.x + this.radius * 2 >= this.gameScreen.offsetWidth) {
+            this.speedX *= -1; 
+        }
+        if (this.y <= 0) {
+            this.speedY *= -1; 
+        }
+
+        this.updatePosition();
+    }
+
+    updatePosition() {
+        this.element.style.left = `${this.x}px`;
+        this.element.style.top = `${this.y}px`;
+    }
+
+    checkBallCollisions(paddle, bricks) {
+        // Check collision with the paddle
+        if (this.isColliding(paddle)) {
+            this.speedY *= -1; // Reverse the ball's vertical direction
+        }
+
+        // Check collision with each brick
+        bricks.forEach((row) => {
+            row.forEach((brick) => {
+                if (brick.status && this.isColliding(brick)) {
+                    brick.status = 0; 
+                    brick.element.style.display = 'none'; 
+                    this.speedY *= -1.1; 
+                }
+            });
+        });
+    }
+
+    isColliding(object) {
+        const ballRect = this.element.getBoundingClientRect();
+        const objectRect = object.element.getBoundingClientRect();
+
+        return ballRect.right > objectRect.left &&
+            ballRect.left < objectRect.right &&
+            ballRect.bottom > objectRect.top &&
+            ballRect.top < objectRect.bottom;
+    }
+
 }
