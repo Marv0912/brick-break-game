@@ -1,11 +1,58 @@
 class Game {
-    constructor(paddle, ball, ) {
-        this.width = 560;
-        this.height = 575;   
-        this.paddle =  paddle;  
-        this.ball = ball;
+    constructor() {
+        this.startScreen = document.getElementById('game-intro');
+        this.gameScreen = document.getElementById('game-screen');
+        this.gameContainer = document.getElementById('game-container')
+        this.width = 550;
+        this.height = 350;
+        this.ball = new Ball(this.gameScreen, 250, 300, 10, 'assets/ball.png');
+        this.paddle = new Paddle(this.gameScreen, 240, 370, 75, 15, 'assets/paddle.png');
         this.score = 0;
         this.lives = 3;
-        // this.canvas =    
+        this.bricks = [];
+        this.createBricks();
+        this.gameIsOver = false;
+        
     }
+
+    createBricks() {
+        for (let row = 0; row < 4; row++) {
+            this.bricks[row] = [];
+            for (let col = 0; col < 5; col++) {
+                const x = col * (110); 
+                const y = row * (40);  
+                const brick = new Brick(this.gameScreen, x, y, 50, 10, 'assets/brick.png');
+                this.bricks[row].push(brick);
+            }
+        }
+    }
+
+    start() {
+        console.log('start')
+        this.startScreen.style.display = 'none';
+        this.gameScreen.style.display = 'inherit'
+        this.gameContainer.style.display = 'block';
+        this.gameScreen.style.height = `${this.height}px`;
+        this.gameScreen.style.width = `${this.width}px`;
+
+        this.gameLoop();
+    }
+
+    gameLoop() {
+        if (this.gameIsOver) {
+            return;
+        }
+
+        this.update();
+        // Additional game loop logic
+        window.requestAnimationFrame(() => this.gameLoop());
+    }
+
+    update() {
+        console.log('update')
+        // this.paddle.move();
+        this.ball.move();
+        this.ball.checkBallCollisions(this.paddle, this.bricks);
+    }
+
 }
