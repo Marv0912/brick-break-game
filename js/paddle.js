@@ -5,8 +5,7 @@ class Paddle {
         this.top = top;
         this.width = width;
         this.height = height;
-        this.speed = 5;
-        this.maxSpeed = 10;
+        this.speed = 25;
         this.element = document.createElement('img');
         this.element.src = `${element}`;
         this.element.style.position = 'absolute';
