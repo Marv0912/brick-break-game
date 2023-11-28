@@ -10,19 +10,20 @@
 
 <body>
     <main>
-        <div class="game-intro" >
-            <div></div>
-            <button id="start-button">Start</button>
+        <div id="game-intro" >
+            <div class="game-intro-container" >
+            <img src="./assets/background-intro.png" alt="" class="intro-img" />
+                <button id="start-button">Start</button>
+            </div>
         </div>
-        <div>
+        <div id="game-container" >
             <div>
-                <div>Lives: <span id="lives"> </span></div>
-                <div>Score: <span id="score"> </span></div>
-    
+                <div>Lives: <span id="lives">3</span></div>
+                <div>Score: <span id="score">0</span></div>
             </div>
             <div id="game-screen"></div>
         </div>
-
+        
         <button id="try-again-button">Try Again</button>
     </main>
 
@@ -30,6 +31,7 @@
     <script type="text/javascript" src="js/paddle.js"></script>
     <script type="text/javascript" src="js/ball.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
 </body>
 
 </html>
