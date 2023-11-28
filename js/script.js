@@ -9,5 +9,14 @@ window.onload = function () {
 
     function startGame() {
         console.log('start game');
+        game.start();
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                game.paddle.move('left');
+            } else if (event.key === 'ArrowRight') {
+                game.paddle.move('right');
+            }
+        });
+        
     }
 }
