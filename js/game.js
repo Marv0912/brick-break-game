@@ -5,8 +5,8 @@ class Game {
         this.gameContainer = document.getElementById('game-container')
         this.width = 550;
         this.height = 350;
-        this.ball = new Ball(this.gameScreen, 250, 300, 10, 'assets/ball.png', this);
-        this.paddle = new Paddle(this.gameScreen, 240, 370, 75, 15, 'assets/paddle.png');
+        this.ball = new Ball(this.gameScreen, 268, 350, 10, 'assets/ball.png', this);
+        this.paddle = new Paddle(this.gameScreen, 240, 370, 75, 15, 'assets/paddle.png', this);
         this.score = 0;
         this.lives = 3;
         this.bricks = [];
@@ -53,6 +53,10 @@ class Game {
         // this.paddle.move();
         this.ball.move();
         this.ball.checkBallCollisions(this.paddle, this.bricks);
+
+        if (this.ball.y > this.height + 50) {
+            this.loseLife()
+        }
     }
     updateScore() {
         this.score += 10;
@@ -70,6 +74,7 @@ class Game {
     }
     resetBall() {
         this.ball.reset()
+        this.paddle.reset()
     }
 
 }

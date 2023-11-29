@@ -1,6 +1,8 @@
 class Paddle {
-    constructor(gameScreen, left, top, width, height, element) {
+    constructor(gameScreen, left, top, width, height, element, game) {
+        this.game = game;
         this.gameScreen = gameScreen;
+        this.initialLeft = left
         this.left = left;
         this.top = top;
         this.width = width;
@@ -25,7 +27,14 @@ class Paddle {
         if (this.left + this.width > this.gameScreen.offsetWidth) {
             this.left = this.gameScreen.offsetWidth - this.width;
         }
+        if (this.game.ball.isStuck) {
+            this.game.ball.release()
+        }
+        this.updatePosition();
+    }
 
+    reset() {
+        this.left = this.initialLeft;
         this.updatePosition();
     }
 
