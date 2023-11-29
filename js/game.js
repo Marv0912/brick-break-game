@@ -58,5 +58,16 @@ class Game {
         this.score += 10;
         document.getElementById('score').textContent = `${this.score}`
     }
+    loseLife() {
+        this.lives -= 1;
+        document.getElementById('lives').textContent = `${this.lives}`
+
+        if (this.lives <= 0) {
+            this.endGame();
+        } else {
+            this.resetBall();
+        }
+    }
+    
 
 }
