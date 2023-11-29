@@ -57,6 +57,7 @@ class Game {
         if (this.ball.y > this.height + 50) {
             this.loseLife()
         }
+        this.checkWin()
     }
     updateScore() {
         this.score += 10;
@@ -75,6 +76,24 @@ class Game {
     resetBall() {
         this.ball.reset()
         this.paddle.reset()
+    }
+
+    checkWin() {
+        const allBricksBroken = this.bricks.every(row => row.every(brick => brick.status === 0));
+
+        if (allBricksBroken) {
+            this.winGame()
+        }
+    }
+
+    winGame() {
+        this.gameIsOver = true;
+        document.getElementById('win-image').style.display = 'block';
+    
+    }
+    endGame() {
+        this.gameIsOver = true;
+        document.getElementById('lose-image').style.display = 'block';
     }
 
 }
