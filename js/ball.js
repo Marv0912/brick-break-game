@@ -34,7 +34,7 @@ class Ball {
         this.element.style.top = `${this.y}px`;
     }
 
-    checkBallCollisions(paddle, bricks) {
+    checkBallCollisions(paddle, bricks, game) {
         // Check collision with the paddle
         if (this.isColliding(paddle)) {
             this.speedY *= -1; // Reverse the ball's vertical direction
@@ -47,6 +47,7 @@ class Ball {
                     brick.status = 0; 
                     brick.element.style.display = 'none'; 
                     this.speedY *= -1.1; 
+                    game.updateScore()
                 }
             });
         });
