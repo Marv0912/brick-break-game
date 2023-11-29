@@ -54,5 +54,9 @@ class Game {
         this.ball.move();
         this.ball.checkBallCollisions(this.paddle, this.bricks);
     }
+    updateScore() {
+        this.score += 10;
+        document.getElementById('score').textContent = `${this.score}`
+    }
 
 }
