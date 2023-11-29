@@ -5,7 +5,7 @@ class Game {
         this.gameContainer = document.getElementById('game-container')
         this.width = 550;
         this.height = 350;
-        this.ball = new Ball(this.gameScreen, 250, 300, 10, 'assets/ball.png');
+        this.ball = new Ball(this.gameScreen, 250, 300, 10, 'assets/ball.png', this);
         this.paddle = new Paddle(this.gameScreen, 240, 370, 75, 15, 'assets/paddle.png');
         this.score = 0;
         this.lives = 3;
@@ -68,6 +68,8 @@ class Game {
             this.resetBall();
         }
     }
-    
+    resetBall() {
+        this.ball.reset()
+    }
 
 }

@@ -1,5 +1,6 @@
 class Ball {
-    constructor(gameScreen, x, y, radius, element) {
+    constructor(gameScreen, x, y, radius, element, game) {
+        this.game = game;
         this.gameScreen = gameScreen
         this.x = x;
         this.y = y;
@@ -47,7 +48,7 @@ class Ball {
                     brick.status = 0; 
                     brick.element.style.display = 'none'; 
                     this.speedY *= -1.1; 
-                    game.updateScore()
+                    this.game.updateScore()
                 }
             });
         });
@@ -62,5 +63,10 @@ class Ball {
             ballRect.bottom > objectRect.top &&
             ballRect.top < objectRect.bottom;
     }
-
+    reset() {
+        console.log('working');
+        // this.x = x;
+        // this.y = y
+        // this.updatePosition()
+    }
 }
